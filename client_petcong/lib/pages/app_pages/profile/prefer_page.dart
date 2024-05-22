@@ -18,7 +18,7 @@ class PreferPageState extends State<PreferPage> {
   final SignupController signupController = Get.put(SignupController());
   String _prefer = '';
   double _progress = 0.0;
-  bool _isButtonDisabled = true; // _isButtonDisabled 변수 선언
+  bool _isButtonDisabled = true;
 
   @override
   void initState() {
@@ -54,7 +54,10 @@ class PreferPageState extends State<PreferPage> {
               const Center(
                   child: Text('추천 상대!',
                       style: TextStyle(
-                          fontSize: 32.0, fontWeight: FontWeight.w600))),
+                        fontSize: 32.0,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Cafe24',
+                      ))),
               const SizedBox(height: 30.0),
               Center(
                 child: SizedBox(

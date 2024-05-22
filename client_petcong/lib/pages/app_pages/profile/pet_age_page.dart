@@ -67,7 +67,6 @@ class PetAgePageState extends State<PetAgePage> {
     return null;
   }
 
-//TODO: change to age
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,11 +97,14 @@ class PetAgePageState extends State<PetAgePage> {
                   Text(
                     '${widget.petName}의 나이는?',
                     style: const TextStyle(
-                        fontSize: 32.0, fontWeight: FontWeight.w600),
+                      fontSize: 32.0,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Cafe24',
+                    ),
                   ),
                   const SizedBox(height: 30.0),
                   SizedBox(
-                    width: 200, // 원하는 너비를 설정합니다.
+                    width: 200,
                     child: TextField(
                       controller: _controller,
                       decoration: const InputDecoration(
@@ -119,6 +121,7 @@ class PetAgePageState extends State<PetAgePage> {
                       style: const TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w400,
+                        fontFamily: 'Cafe24',
                       ),
                       inputFormatters: [
                         FilteringTextInputFormatter.digitsOnly,
@@ -134,22 +137,20 @@ class PetAgePageState extends State<PetAgePage> {
                     builder: (context, value, child) {
                       return SizedBox(
                         child: ContinueButton(
-                          isFilled: value ==
-                              null, // value가 null인 경우에 버튼이 활성화되도록 수정합니다.
+                          isFilled: value == null,
                           buttonText: 'CONTINUE',
-                          onPressed:
-                              value == null // value가 null인 경우에 버튼이 눌리도록 수정합니다.
-                                  ? () {
-                                      SignupController.to.addPetAge(
-                                          int.parse(_controller.value.text));
-                                      Get.to(
-                                          PetGenderPage(
-                                            petName: widget.petName,
-                                            progress: widget.progress + 0.1,
-                                          ),
-                                          transition: Transition.noTransition);
-                                    }
-                                  : null,
+                          onPressed: value == null
+                              ? () {
+                                  SignupController.to.addPetAge(
+                                      int.parse(_controller.value.text));
+                                  Get.to(
+                                      PetGenderPage(
+                                        petName: widget.petName,
+                                        progress: widget.progress + 0.1,
+                                      ),
+                                      transition: Transition.noTransition);
+                                }
+                              : null,
                         ),
                       );
                     },

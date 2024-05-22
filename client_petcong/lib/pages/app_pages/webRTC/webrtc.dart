@@ -134,7 +134,6 @@ class MainVideoCallWidgetState extends State<MainVideoCallWidget> {
   late double localRendererY = videoHeight / 20;
   RxBool showMessage = false.obs;
   RxBool isIdxChanged = false.obs;
-  String? cameraMode = 'user';
 
   @override
   void initState() {
@@ -172,37 +171,6 @@ class MainVideoCallWidgetState extends State<MainVideoCallWidget> {
       isIdxChanged.value = false;
       showMessage.value = true;
     }
-  }
-
-  void toggleCameraMode() {
-    setState(() {
-      if (cameraMode == 'user') {
-        cameraMode = 'environment';
-      } else {
-        cameraMode = 'user';
-      }
-
-      final videoTrack = widget._localStream!.getTracks();
-      print('find videoTrack $videoTrack');
-      // final mediaConstraints = {
-      //   'audio': true,
-      //   'video': {'facingMode': cameraMode}
-      // };
-
-      // widget._localStream?.dispose();
-      // Helper.openCamera(mediaConstraints).then((stream) {
-      //   widget._localStream = stream;
-      //   widget._localRenderer!.srcObject = widget._localStream;
-      //   widget._localStream!.getTracks().forEach((track) {
-      //     widget._pc!.addTrack(track, widget._localStream!);
-      //   });
-      // });
-      // Helper.openCamera(mediaConstraints).then((newStream) {
-      //   setState(() {
-      //     widget._localStream = newStream;
-      //   });
-      // });
-    });
   }
 
   Future<void> disconnectCall() async {
@@ -348,11 +316,12 @@ class MainVideoCallWidgetState extends State<MainVideoCallWidget> {
                                                   widget.quizIdx!.value <
                                                       quizs.length
                                               ? quizs[widget.quizIdx!.value]
-                                              : 'No quiz available',
+                                              : '질문이 끝났어요!',
                                           style: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 20,
                                             fontWeight: FontWeight.w500,
+                                            fontFamily: 'Cafe24',
                                           ),
                                         ),
                                       ),
@@ -410,7 +379,6 @@ class MainVideoCallWidgetState extends State<MainVideoCallWidget> {
                 ],
               ),
             ),
-
             const SizedBox(
               height: 20,
             ),
@@ -418,9 +386,6 @@ class MainVideoCallWidgetState extends State<MainVideoCallWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // const SizedBox(
-                //   width: 70,
-                // ),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: FloatingActionButton(
@@ -433,17 +398,6 @@ class MainVideoCallWidgetState extends State<MainVideoCallWidget> {
                     backgroundColor: MyColor.petCongColor4,
                     elevation: 3,
                     child: const Icon(Icons.call_end),
-                  ),
-                ),
-                // const SizedBox(
-                //   width: 20,
-                // ),
-                FloatingActionButton.small(
-                  onPressed: toggleCameraMode,
-                  backgroundColor: Colors.transparent,
-                  child: const Icon(
-                    Icons.flip_camera_ios_rounded,
-                    color: MyColor.petCongColor3,
                   ),
                 ),
               ],

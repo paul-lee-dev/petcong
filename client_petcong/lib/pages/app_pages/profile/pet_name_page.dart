@@ -65,16 +65,20 @@ class PetNamePageState extends State<PetNamePage> {
             const Center(
                 child: Text('내 반려동물 이름은?',
                     style: TextStyle(
-                        fontSize: 32.0, fontWeight: FontWeight.w600))),
+                      fontSize: 32.0,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Cafe24',
+                    ))),
             const SizedBox(height: 30.0),
             SizedBox(
-              width: 300, // 원하는 너비 설정
+              width: 300,
               child: TextField(
                   controller: _controller,
                   style: const TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w400,
                     decoration: TextDecoration.none,
+                    fontFamily: 'Cafe24',
                   ),
                   decoration: const InputDecoration(
                     hintText: '반려동물 이름을 입력하세요',
@@ -92,7 +96,7 @@ class PetNamePageState extends State<PetNamePage> {
             ),
             const SizedBox(
               height: 30.0,
-            ), // TextField 위젯과 ElevatedButton 위젯 사이에 100픽셀의 공간을 만듭니다.
+            ),
             ContinueButton(
               isFilled: !_isButtonDisabled,
               buttonText: 'CONTINUE',

@@ -55,6 +55,7 @@ class _HomePageState extends State<HomePage> {
   Future<void> activateClient() async {
     await socketService.init();
     _client = await socketService.initSocket();
+    debugPrint(_client.toString());
   }
 
   @override
@@ -100,7 +101,7 @@ class _HomePageState extends State<HomePage> {
             child: Material(
               color: Colors.transparent,
               child: Container(
-                width: 150,
+                width: 140,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8),
@@ -116,8 +117,13 @@ class _HomePageState extends State<HomePage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ListTile(
-                      leading: const Icon(Icons.exit_to_app),
-                      title: const Text('Logout'),
+                      leading: const Icon(
+                        Icons.logout_outlined,
+                      ),
+                      title: const Text(
+                        'Logout',
+                        style: TextStyle(fontFamily: 'Cafe24', fontSize: 10),
+                      ),
                       onTap: () async {
                         await UserController.signOut(uid!);
                         _overlayEntry?.remove();
